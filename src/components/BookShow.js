@@ -1,5 +1,40 @@
-function BookShow() {
-  return <div>BookShow</div>;
+import { useState } from "react";
+import BookEdit from "./BookEdit";
+
+function BookShow({ book, onDelete, onEdit }) {
+    const [showEdit, setShowEdit] = useState(false);
+
+    const hanldeEdit = () => {
+        setShowEdit(!showEdit);
+    };
+
+    const hanldeDelete = () => {
+        onDelete(book.id);
+    };
+
+    const handleSubmit = () => {
+        setShowEdit(false);
+    };
+
+    let content = <h3>{book.title}</h3>;
+    if (showEdit) {
+        content = (
+            <BookEdit onSubmit={handleSubmit} onEdit={onEdit} book={book} />
+        );
+    }
+    return (
+        <div className="book-show">
+            <div>{content}</div>
+            <div className="actions">
+                <button className="edit" onClick={hanldeEdit}>
+                    Edit
+                </button>
+                <button className="delete" onClick={hanldeDelete}>
+                    Delete
+                </button>
+            </div>
+        </div>
+    );
 }
 
 export default BookShow;
