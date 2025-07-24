@@ -1,5 +1,5 @@
-import { useState } from "react";
-import BookEdit from "./BookEdit";
+import { useState } from 'react';
+import BookEdit from './BookEdit';
 
 function BookShow({ book, onDelete, onEdit }) {
     const [showEdit, setShowEdit] = useState(false);
@@ -12,18 +12,22 @@ function BookShow({ book, onDelete, onEdit }) {
         onDelete(book.id);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (id, newTitle) => {
         setShowEdit(false);
+        onEdit(id, newTitle);
     };
 
     let content = <h3>{book.title}</h3>;
     if (showEdit) {
-        content = (
-            <BookEdit onSubmit={handleSubmit} onEdit={onEdit} book={book} />
-        );
+        content = <BookEdit onSubmit={handleSubmit} book={book} />;
     }
     return (
         <div className="book-show">
+            <img
+                alt="books"
+                src={'https://picsum.photos/seed/${book.id}/300/200'}
+            />
+            console.log('${book.id}');
             <div>{content}</div>
             <div className="actions">
                 <button className="edit" onClick={hanldeEdit}>
