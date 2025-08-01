@@ -27,7 +27,7 @@ function BookShow({ book, onDelete, onEdit }) {
                 alt="books"
                 src={'https://picsum.photos/seed/${book.id}/300/200'}
             />
-            console.log('${book.id}');
+
             <div>{content}</div>
             <div className="actions">
                 <button className="edit" onClick={hanldeEdit}>
